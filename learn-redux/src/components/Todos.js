@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // initialState의 todo객체 (redux에서 넘겨주는 todo객체)
-function TodoItem({ todo, onToggle }) {
+const TodoItem = React.memo(function TodoItem({ todo, onToggle }) {
   return (
     <li
       style={{
@@ -12,9 +12,9 @@ function TodoItem({ todo, onToggle }) {
       {todo.text}
     </li>
   );
-}
+});
 
-function TodoList({ todos, onToggle }) {
+const TodoList = React.memo(function TodoList({ todos, onToggle }) {
   return (
     <ul>
       {todos.map((todo) => (
@@ -22,7 +22,7 @@ function TodoList({ todos, onToggle }) {
       ))}
     </ul>
   );
-}
+});
 
 function Todos({ todos, onCreate, onToggle }) {
   const [text, setText] = useState("");
@@ -48,4 +48,4 @@ function Todos({ todos, onCreate, onToggle }) {
   );
 }
 
-export default Todos;
+export default React.memo(Todos);
